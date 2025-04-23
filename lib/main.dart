@@ -97,14 +97,14 @@ class _ScrollableScaffoldState extends State<ScrollableScaffold> {
       mobile:
           (_) => Scaffold(
             backgroundColor: Colors.black,
-            body: widget.child,
-            bottomNavigationBar: const BottomNavBarMobile(),
+            body: SingleChildScrollView(child: widget.child),
+            bottomNavigationBar: SafeArea(child: const BottomNavBarMobile()),
           ),
       tablet:
           (_) => Scaffold(
             backgroundColor: Colors.black,
-            body: widget.child,
-            bottomNavigationBar: const BottomNavBarMobile(),
+            body: SingleChildScrollView(child: widget.child),
+            bottomNavigationBar: const SafeArea(child: BottomNavBarMobile()),
           ),
       desktop: (_) => _buildWebLayout(),
     );
