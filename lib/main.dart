@@ -5,7 +5,9 @@ import 'package:wolverine/pages/home_page.dart';
 import 'package:wolverine/pages/movies_page.dart';
 import 'package:wolverine/pages/signin_page.dart';
 import 'package:wolverine/pages/sports_Page.dart';
+import 'package:wolverine/widgets/bottomNavBar_mobile.dart';
 import 'package:wolverine/widgets/custom_app_bar.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 void main() {
   runApp(const MyApp());
@@ -91,6 +93,24 @@ class _ScrollableScaffoldState extends State<ScrollableScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    return ScreenTypeLayout.builder(
+      mobile:
+          (_) => Scaffold(
+            backgroundColor: Colors.black,
+            body: widget.child,
+            bottomNavigationBar: const BottomNavBarMobile(),
+          ),
+      tablet:
+          (_) => Scaffold(
+            backgroundColor: Colors.black,
+            body: widget.child,
+            bottomNavigationBar: const BottomNavBarMobile(),
+          ),
+      desktop: (_) => _buildWebLayout(),
+    );
+  }
+
+  Widget _buildWebLayout() {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: CustomAppBar(scrollOffset: _scrollOffset),
