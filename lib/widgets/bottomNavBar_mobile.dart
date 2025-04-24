@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 class BottomNavBarMobile extends StatelessWidget {
   const BottomNavBarMobile({super.key});
 
-  static const List<String> _routes = ['/', '/sports', '/movies', '/signin'];
+  static const List<String> _routes = ['/', '/sports', '/movies', '/account'];
 
   int _getCurrentIndex(String location) {
     for (int i = 0; i < _routes.length; i++) {

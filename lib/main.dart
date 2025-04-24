@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/pages/account_page.dart';
 import 'package:wolverine/pages/details_page.dart';
 import 'package:wolverine/pages/home_page.dart';
 import 'package:wolverine/pages/movies_page.dart';
@@ -39,6 +40,11 @@ final GoRouter _router = GoRouter(
           path: '/signin',
           pageBuilder:
               (context, state) => const NoTransitionPage(child: SignInPage()),
+        ),
+        GoRoute(
+          path: '/account',
+          pageBuilder:
+              (context, state) => const NoTransitionPage(child: AccountPage()),
         ),
         GoRoute(
           path: '/details/:id',
