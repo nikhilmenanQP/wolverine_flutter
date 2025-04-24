@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:wolverine/pages/details_page.dart';
 import 'package:go_router/go_router.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/pages/details_page.dart';
 import 'package:wolverine/pages/home_page.dart';
 import 'package:wolverine/pages/movies_page.dart';
 import 'package:wolverine/pages/signin_page.dart';
 import 'package:wolverine/pages/sports_Page.dart';
 import 'package:wolverine/widgets/bottomNavBar_mobile.dart';
 import 'package:wolverine/widgets/custom_app_bar.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 
 void main() {
   runApp(const MyApp());
@@ -61,7 +61,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/// Wrapper Scaffold with scroll controller for AppBar
 class ScrollableScaffold extends StatefulWidget {
   final Widget child;
 

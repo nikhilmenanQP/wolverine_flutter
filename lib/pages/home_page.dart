@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/utils/responsive_sizes.dart';
 import 'package:wolverine/widgets/footer_section.dart';
 import 'package:wolverine/widgets/home_carousel.dart';
 import 'package:wolverine/widgets/movie_list_section.dart';
@@ -6,12 +8,14 @@ import 'package:wolverine/widgets/movie_list_section.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final List<String> carouselImages = List.generate(
+  // Memoized carousel images
+  final List<String> _carouselImages = List.generate(
     10,
     (index) => 'https://picsum.photos/800/400?random=$index',
   );
 
-  final List<Map<String, String>> movieList = List.generate(
+  // Memoized movie list
+  final List<Map<String, String>> _movieList = List.generate(
     10,
     (index) => {
       'id': '$index',
@@ -23,43 +27,93 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          HomeCarousel(carouselImages: carouselImages),
-          MovieListSection(
-            movieList: movieList,
-            genreType: 'Header 2',
-            cardContainerHeight: 180,
-            cardHeight: 150,
-            cardWidth: 260,
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                HomeCarousel(
+                  carouselImages: _carouselImages,
+                  carouselHeight: getResponsiveSize(
+                    sizingInfo: sizingInformation,
+                    mobile: 520,
+                    tablet: 520,
+                    desktop: 620,
+                  ),
+                ),
+                _buildMovieSection(
+                  sizingInformation,
+                  genre: 'Header 2',
+                  containerHeight: [80, 140, 180],
+                  height: [70, 120, 150],
+                  width: [120, 200, 260],
+                ),
+                _buildMovieSection(
+                  sizingInformation,
+                  genre: 'Header 3',
+                  containerHeight: [110, 180, 200],
+                  height: [100, 160, 180],
+                  width: [100, 160, 180],
+                ),
+                _buildMovieSection(
+                  sizingInformation,
+                  genre: 'Header 4',
+                  containerHeight: [100, 160, 180],
+                  height: [70, 120, 150],
+                  width: [120, 200, 260],
+                  showTitle: true,
+                ),
+                _buildMovieSection(
+                  sizingInformation,
+                  genre: 'Header 5',
+                  containerHeight: [160, 280, 320],
+                  height: [150, 260, 300],
+                  width: [92, 160, 180],
+                ),
+                const SizedBox(height: 16),
+                if (sizingInformation.deviceScreenType ==
+                    DeviceScreenType.desktop)
+                  const FooterSection(),
+              ],
+            ),
           ),
-          MovieListSection(
-            movieList: movieList,
-            genreType: 'Header 3',
-            cardContainerHeight: 240,
-            cardHeight: 180,
-            cardWidth: 180,
-          ),
-          MovieListSection(
-            movieList: movieList,
-            genreType: 'Header 4',
-            cardContainerHeight: 180,
-            cardHeight: 150,
-            cardWidth: 260,
-            showTitle: true,
-          ),
-          MovieListSection(
-            movieList: movieList,
-            genreType: 'Header 5',
-            cardContainerHeight: 320,
-            cardHeight: 300,
-            cardWidth: 180,
-          ),
-          const SizedBox(height: 16),
-          FooterSection(),
-        ],
+        );
+      },
+    );
+  }
+
+  // Helper method to generate movie sections
+  Widget _buildMovieSection(
+    SizingInformation sizingInformation, {
+    required String genre,
+    required List<double> containerHeight,
+    required List<double> height,
+    required List<double> width,
+    bool showTitle = false,
+  }) {
+    return MovieListSection(
+      movieList: _movieList,
+      genreType: genre,
+      showTitle: showTitle,
+      cardContainerHeight: getResponsiveSize(
+        sizingInfo: sizingInformation,
+        mobile: containerHeight[0],
+        tablet: containerHeight[1],
+        desktop: containerHeight[2],
+      ),
+      cardHeight: getResponsiveSize(
+        sizingInfo: sizingInformation,
+        mobile: height[0],
+        tablet: height[1],
+        desktop: height[2],
+      ),
+      cardWidth: getResponsiveSize(
+        sizingInfo: sizingInformation,
+        mobile: width[0],
+        tablet: width[1],
+        desktop: width[2],
       ),
     );
   }
