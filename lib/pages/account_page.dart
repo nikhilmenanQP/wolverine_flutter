@@ -12,7 +12,7 @@ class AccountPage extends StatelessWidget {
       tablet: (_) => const AccountScreen(),
       desktop: (_) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          context.go('/');
+          context.go('/signin');
         });
         return const Scaffold(body: SizedBox());
       },

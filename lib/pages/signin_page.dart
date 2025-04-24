@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ScreenTypeLayout.builder(
+      mobile: (_) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          context.go('/account');
+        });
+        return const Scaffold(body: SizedBox());
+      },
+      tablet: (_) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          context.go('/account');
+        });
+        return const Scaffold(body: SizedBox());
+      },
+      desktop: (_) => const SignInScreen(),
+    );
+  }
+}
+
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
