@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wolverine/widgets/movie_list_section.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/widgets/movie_section.dart';
 
 class DetailsPage extends StatelessWidget {
   DetailsPage({super.key, this.movieId});
@@ -19,21 +20,26 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        HeroSection(movieId: movieId),
-        InfoSection(),
-        OverviewSection(),
-        const SizedBox(height: 16),
-        MovieListSection(
-          movieList: movieList,
-          genreType: 'More like this',
-          cardContainerHeight: 320,
-          cardHeight: 300,
-          cardWidth: 180,
-        ),
-      ],
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HeroSection(movieId: movieId),
+            InfoSection(),
+            OverviewSection(),
+            const SizedBox(height: 16),
+            MovieSection(
+              containerHeight: [160, 280, 320],
+              genre: 'Header 5',
+              height: [130, 240, 300],
+              movieList: movieList,
+              sizingInformation: sizingInformation,
+              width: [85, 160, 180],
+            ),
+          ],
+        );
+      },
     );
   }
 }

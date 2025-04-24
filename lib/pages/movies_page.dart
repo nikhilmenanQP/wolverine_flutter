@@ -7,13 +7,6 @@ import 'package:wolverine/widgets/movie_list_section.dart';
 class MoviesPage extends StatelessWidget {
   MoviesPage({super.key});
 
-  // Memoized carousel images
-  final List<String> _carouselImages = List.generate(
-    10,
-    (index) => 'https://picsum.photos/800/400?random=$index',
-  );
-
-  // Memoized movie list
   final List<Map<String, String>> _movieList = List.generate(
     10,
     (index) => {
@@ -74,7 +67,6 @@ class MoviesPage extends StatelessWidget {
     );
   }
 
-  // Helper method to generate movie sections
   Widget _buildMovieSection(
     SizingInformation sizingInformation, {
     required String genre,
