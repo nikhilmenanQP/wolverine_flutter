@@ -3,19 +3,16 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wolverine/utils/responsive_sizes.dart';
 import 'package:wolverine/widgets/footer_section.dart';
 import 'package:wolverine/widgets/home_carousel.dart';
-import 'package:wolverine/widgets/movie_list_section.dart';
 import 'package:wolverine/widgets/movie_section.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  // Memoized carousel images
   final List<String> _carouselImages = List.generate(
     10,
     (index) => 'https://picsum.photos/800/400?random=$index',
   );
 
-  // Memoized movie list
   final List<Map<String, String>> _movieList = List.generate(
     10,
     (index) => {

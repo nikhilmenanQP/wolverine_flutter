@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wolverine/l10n/app_localizations.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({super.key});
@@ -44,8 +45,8 @@ class _CustomSearchBar extends State<CustomSearchBar> {
                         controller: _controller,
                         onChanged: _onSearchChanged,
                         style: const TextStyle(color: Colors.black),
-                        decoration: const InputDecoration(
-                          hintText: 'Search here',
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)!.search_here,
                           border: InputBorder.none,
                           hintStyle: TextStyle(
                             color: Colors.black,

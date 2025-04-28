@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/l10n/app_localizations.dart';
 import 'package:wolverine/widgets/movie_section.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -234,9 +235,15 @@ class InfoSection extends StatelessWidget {
 
           Row(
             children: [
-              _buildIconButton(Icons.add, "Watchlist"),
+              _buildIconButton(
+                Icons.add,
+                AppLocalizations.of(context)!.watch_list,
+              ),
               const SizedBox(width: 20),
-              _buildIconButton(Icons.share_outlined, "Share"),
+              _buildIconButton(
+                Icons.share_outlined,
+                AppLocalizations.of(context)!.share,
+              ),
             ],
           ),
         ],
@@ -335,7 +342,9 @@ class _OverviewSectionState extends State<OverviewSection> {
               });
             },
             child: Text(
-              isExpanded ? "Read Less" : "Read More",
+              isExpanded
+                  ? AppLocalizations.of(context)!.read_less
+                  : AppLocalizations.of(context)!.read_more,
               style: const TextStyle(
                 color: Colors.blueAccent,
                 fontSize: 14,

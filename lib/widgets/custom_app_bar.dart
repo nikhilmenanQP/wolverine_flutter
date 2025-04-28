@@ -71,7 +71,7 @@ class _NavBarItems extends StatelessWidget {
     if (screenWidth >= 1050) {
       navItems.add(
         NavItem(
-          title: 'Sports',
+          title: AppLocalizations.of(context)!.sports,
           route: '/sports',
           isSelected: currentLocation == '/sports',
         ),
@@ -80,7 +80,7 @@ class _NavBarItems extends StatelessWidget {
     if (screenWidth >= 1120) {
       navItems.add(
         NavItem(
-          title: 'Movies',
+          title: AppLocalizations.of(context)!.movies,
           route: '/movies',
           isSelected: currentLocation == '/movies',
         ),
@@ -116,7 +116,10 @@ class _SignInButton extends StatelessWidget {
     return ElevatedButton.icon(
       onPressed: () => context.go('/signin'),
       icon: const Icon(Icons.person, size: 24),
-      label: const Text('Sign In', style: TextStyle(fontSize: 14)),
+      label: Text(
+        AppLocalizations.of(context)!.signIn,
+        style: TextStyle(fontSize: 14),
+      ),
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
@@ -142,8 +145,7 @@ class _LanguageSwitchState extends State<LanguageSwitch> {
     final Locale newLocale = isEnglish ? Locale('en') : Locale('ja');
     MyApp.of(
       context,
-    )?.setLocale(newLocale); // Call a method to update the app locale
-    debugPrint('Selected language: ${isEnglish ? 'EN' : 'JA'}');
+    ).setLocale(newLocale); // Call a method to update the app locale
   }
 
   @override

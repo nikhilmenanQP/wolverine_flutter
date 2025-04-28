@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/l10n/app_localizations.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -50,19 +51,21 @@ class AccountScreen extends StatelessWidget {
           const SizedBox(height: 30),
 
           // Profile Options Section
-          _SectionHeader(title: 'Edit Profile'),
-          _SectionHeader(title: 'Orders'),
-          _SectionHeader(title: 'Payment Methods'),
-          _SectionHeader(title: 'Settings'),
-          _SectionHeader(title: 'Help & Support'),
+          _SectionHeader(title: AppLocalizations.of(context)!.edit_profile),
+          _SectionHeader(title: AppLocalizations.of(context)!.orders),
+          _SectionHeader(title: AppLocalizations.of(context)!.payment_methods),
+          _SectionHeader(title: AppLocalizations.of(context)!.settings),
+          _SectionHeader(title: AppLocalizations.of(context)!.help_and_support),
 
           // Login Section
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: GestureDetector(
-              onTap: () {},
-              child: const Text(
-                'Login',
+              onTap: () {
+                context.go('/signin');
+              },
+              child: Text(
+                AppLocalizations.of(context)!.login,
                 style: TextStyle(color: Colors.red, fontSize: 16),
               ),
             ),

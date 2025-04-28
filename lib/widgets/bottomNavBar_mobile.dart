@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wolverine/l10n/app_localizations.dart';
 
 class BottomNavBarMobile extends StatelessWidget {
   const BottomNavBarMobile({super.key});
@@ -33,17 +34,23 @@ class BottomNavBarMobile extends StatelessWidget {
           context.go(_routes[index]);
         }
       },
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: AppLocalizations.of(context)!.home,
+        ),
         BottomNavigationBarItem(
           icon: Icon(Icons.sports_basketball_rounded),
-          label: 'Sports',
+          label: AppLocalizations.of(context)!.sports,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.movie_filter_sharp),
-          label: 'Movies',
+          label: AppLocalizations.of(context)!.movies,
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: AppLocalizations.of(context)!.account,
+        ),
       ],
     );
   }

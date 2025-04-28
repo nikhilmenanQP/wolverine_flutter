@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wolverine/l10n/app_localizations.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
@@ -20,9 +21,9 @@ class FooterSection extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      'Company',
+                      AppLocalizations.of(context)!.left_footer_content_title,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -31,7 +32,9 @@ class FooterSection extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                      AppLocalizations.of(
+                        context,
+                      )!.left_footer_content_subtitle,
                       style: TextStyle(color: Colors.grey),
                     ),
                   ],
@@ -44,9 +47,9 @@ class FooterSection extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      'Quick Links',
+                      AppLocalizations.of(context)!.center_footer_content_title,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -54,10 +57,30 @@ class FooterSection extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 8),
-                    FooterLink(text: 'About Us'),
-                    FooterLink(text: 'Services'),
-                    FooterLink(text: 'Contact'),
-                    FooterLink(text: 'Privacy Policy'),
+                    FooterLink(
+                      text:
+                          AppLocalizations.of(
+                            context,
+                          )!.center_footer_content_link_1,
+                    ),
+                    FooterLink(
+                      text:
+                          AppLocalizations.of(
+                            context,
+                          )!.center_footer_content_link_2,
+                    ),
+                    FooterLink(
+                      text:
+                          AppLocalizations.of(
+                            context,
+                          )!.center_footer_content_link_3,
+                    ),
+                    FooterLink(
+                      text:
+                          AppLocalizations.of(
+                            context,
+                          )!.center_footer_content_link_4,
+                    ),
                   ],
                 ),
               ),
@@ -69,8 +92,8 @@ class FooterSection extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Text(
-                      'Newsletter',
+                    Text(
+                      AppLocalizations.of(context)!.right_footer_content_title,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -78,8 +101,10 @@ class FooterSection extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      'Subscribe to our newsletter for updates.',
+                    Text(
+                      AppLocalizations.of(
+                        context,
+                      )!.right_footer_content_subtitle,
                       style: TextStyle(color: Colors.grey),
                     ),
                     const SizedBox(height: 10),
@@ -88,7 +113,10 @@ class FooterSection extends StatelessWidget {
                       child: TextField(
                         style: const TextStyle(color: Colors.white),
                         decoration: InputDecoration(
-                          hintText: 'Enter your email',
+                          hintText:
+                              AppLocalizations.of(
+                                context,
+                              )!.right_footer_search_placeholder,
                           hintStyle: const TextStyle(color: Colors.white54),
                           filled: true,
                           fillColor: Colors.black,
@@ -117,8 +145,8 @@ class FooterSection extends StatelessWidget {
                             borderRadius: BorderRadius.circular(6),
                           ),
                         ),
-                        child: const Text(
-                          'Subscribe',
+                        child: Text(
+                          AppLocalizations.of(context)!.right_footer_subscribe,
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -136,8 +164,8 @@ class FooterSection extends StatelessWidget {
           const SizedBox(height: 10),
           Align(
             alignment: Alignment.centerLeft,
-            child: const Text(
-              '© 2025 Company Name. All rights reserved.',
+            child: Text(
+              AppLocalizations.of(context)!.right_footer_certified_info,
               style: TextStyle(color: Colors.grey),
             ),
           ),

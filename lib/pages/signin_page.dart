@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/l10n/app_localizations.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -8,25 +9,20 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
-      mobile: (_) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          context.go('/account');
-        });
-        return const Scaffold(body: SizedBox());
-      },
-      tablet: (_) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          context.go('/account');
-        });
-        return const Scaffold(body: SizedBox());
-      },
-      desktop: (_) => const SignInScreen(),
+      mobile:
+          (context) => SignInScreen(
+            containerWidth: MediaQuery.of(context).size.width * 0.9,
+          ),
+      tablet: (context) => const SignInScreen(containerWidth: 400),
+      desktop: (context) => const SignInScreen(containerWidth: 500),
     );
   }
 }
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  const SignInScreen({super.key, required this.containerWidth});
+
+  final double containerWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +34,13 @@ class SignInScreen extends StatelessWidget {
           child: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              context.go('/'); // or Navigator.pop(context);
+              context.go('/');
             },
           ),
         ),
         Center(
           child: Container(
-            width: 500,
+            width: containerWidth,
             padding: const EdgeInsets.all(24),
             margin: EdgeInsets.only(
               top: MediaQuery.of(context).size.height * 0.2,
@@ -62,9 +58,9 @@ class SignInScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Sign In",
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.sign_in,
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -72,20 +68,20 @@ class SignInScreen extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 8),
-                  const Text(
-                    "Stay updated on your professional world",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  Text(
+                    AppLocalizations.of(context)!.sign_in_subtitle,
+                    style: const TextStyle(fontSize: 16, color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'Email',
+                    AppLocalizations.of(context)!.email,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 4),
                   TextField(
                     decoration: InputDecoration(
-                      hintText: "Enter your email",
+                      hintText: AppLocalizations.of(context)!.enter_your_email,
                       filled: true,
                       fillColor: Colors.transparent,
                       labelStyle: const TextStyle(color: Colors.black),
@@ -101,7 +97,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Your email address is required',
+                    AppLocalizations.of(context)!.email_required,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.normal,
@@ -112,14 +108,14 @@ class SignInScreen extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   Text(
-                    'Password',
+                    AppLocalizations.of(context)!.password,
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 4),
                   TextField(
                     obscureText: true,
                     decoration: InputDecoration(
-                      hintText: "Enter your password",
+                      hintText: AppLocalizations.of(context)!.enter_your_pass,
                       filled: true,
                       fillColor: Colors.transparent,
                       labelStyle: const TextStyle(color: Colors.black),
@@ -135,7 +131,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Password required',
+                    AppLocalizations.of(context)!.pass_required,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.normal,
@@ -155,9 +151,9 @@ class SignInScreen extends StatelessWidget {
                         ),
                         padding: const EdgeInsets.symmetric(vertical: 18),
                       ),
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(
+                      child: Text(
+                        AppLocalizations.of(context)!.login,
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.normal,
                         ),
@@ -166,16 +162,16 @@ class SignInScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   Row(
-                    children: const [
-                      Expanded(child: Divider(color: Colors.white38)),
+                    children: [
+                      const Expanded(child: Divider(color: Colors.white38)),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: Text(
-                          "OR",
-                          style: TextStyle(color: Colors.black),
+                          AppLocalizations.of(context)!.or,
+                          style: const TextStyle(color: Colors.black),
                         ),
                       ),
-                      Expanded(child: Divider(color: Colors.white38)),
+                      const Expanded(child: Divider(color: Colors.white38)),
                     ],
                   ),
                   const SizedBox(height: 16),
