@@ -2,35 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wolverine/l10n/app_localizations.dart';
+import 'package:wolverine/utils/responsive_sizes.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout.builder(
-      mobile:
-          (context) => SignInScreen(
-            containerWidth: MediaQuery.of(context).size.width * 0.9,
-          ),
-      tablet: (context) => const SignInScreen(containerWidth: 400),
-      desktop: (context) => const SignInScreen(containerWidth: 500),
+    return ResponsiveBuilder(
+      builder: (context, sizingInformation) {
+        return SignInScreen(sizingInformation: sizingInformation);
+      },
     );
   }
 }
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key, required this.containerWidth});
+  final SizingInformation sizingInformation;
 
-  final double containerWidth;
+  const SignInScreen({super.key, required this.sizingInformation});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned(
-          top: 16,
-          left: 16,
+          top: getResponsiveSize(
+            sizingInfo: sizingInformation,
+            mobile: 52,
+            tablet: 52,
+            desktop: 16,
+          ),
+          left: getResponsiveSize(
+            sizingInfo: sizingInformation,
+            mobile: 16,
+            desktop: 16,
+            tablet: 16,
+          ),
           child: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
@@ -40,10 +48,20 @@ class SignInScreen extends StatelessWidget {
         ),
         Center(
           child: Container(
-            width: containerWidth,
-            padding: const EdgeInsets.all(24),
+            width: getResponsiveSize(
+              sizingInfo: sizingInformation,
+              mobile: MediaQuery.of(context).size.width * 0.9,
+              tablet: MediaQuery.of(context).size.width * 0.8,
+              desktop: 500,
+            ),
+            padding: EdgeInsets.all(24),
             margin: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.2,
+              top: getResponsiveSize(
+                sizingInfo: sizingInformation,
+                mobile: MediaQuery.of(context).size.height * 0.15,
+                tablet: MediaQuery.of(context).size.height * 0.2,
+                desktop: MediaQuery.of(context).size.height * 0.2,
+              ),
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -71,7 +89,7 @@ class SignInScreen extends StatelessWidget {
                   Text(
                     AppLocalizations.of(context)!.sign_in_subtitle,
                     style: const TextStyle(fontSize: 16, color: Colors.grey),
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                   ),
                   const SizedBox(height: 24),
                   Text(

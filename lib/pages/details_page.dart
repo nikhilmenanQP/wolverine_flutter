@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wolverine/l10n/app_localizations.dart';
+import 'package:wolverine/utils/responsive_sizes.dart';
 import 'package:wolverine/widgets/movie_section.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -26,7 +27,7 @@ class DetailsPage extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HeroSection(movieId: movieId),
+            HeroSection(movieId: movieId, sizingInformation: sizingInformation),
             InfoSection(),
             OverviewSection(),
             const SizedBox(height: 16),
@@ -47,12 +48,14 @@ class DetailsPage extends StatelessWidget {
 
 // CHECK: Info-Screen
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key, this.movieId});
+  const HeroSection({super.key, this.movieId, required this.sizingInformation});
 
   final String? movieId;
+  final SizingInformation sizingInformation;
 
   @override
   Widget build(BuildContext context) {
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
     return Stack(
       children: [
         // Background Image
@@ -171,12 +174,22 @@ class HeroSection extends StatelessWidget {
         ),
         // Back button
         Positioned(
-          top: 16,
-          left: 16,
+          top: getResponsiveSize(
+            sizingInfo: sizingInformation,
+            mobile: statusBarHeight,
+            tablet: statusBarHeight,
+            desktop: 16,
+          ),
+          left: getResponsiveSize(
+            sizingInfo: sizingInformation,
+            mobile: 16,
+            desktop: 16,
+            tablet: 16,
+          ),
           child: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              context.go('/'); // or Navigator.pop(context);
+              context.go('/');
             },
           ),
         ),
@@ -293,7 +306,6 @@ class InfoSection extends StatelessWidget {
   }
 }
 
-// CHECK: Overview Section
 class OverviewSection extends StatefulWidget {
   const OverviewSection({super.key});
 
