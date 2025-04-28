@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wolverine/l10n/app_localizations.dart';
+import 'package:wolverine/main.dart';
 import 'package:wolverine/widgets/custom_search_bar.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -59,7 +61,11 @@ class _NavBarItems extends StatelessWidget {
 
     if (screenWidth >= 1000) {
       navItems.add(
-        NavItem(title: 'Home', route: '/', isSelected: currentLocation == '/'),
+        NavItem(
+          title: AppLocalizations.of(context)!.home,
+          route: '/',
+          isSelected: currentLocation == '/',
+        ),
       );
     }
     if (screenWidth >= 1050) {
@@ -133,6 +139,10 @@ class _LanguageSwitchState extends State<LanguageSwitch> {
 
   void toggleLanguage() {
     setState(() => isEnglish = !isEnglish);
+    final Locale newLocale = isEnglish ? Locale('en') : Locale('ja');
+    MyApp.of(
+      context,
+    )?.setLocale(newLocale); // Call a method to update the app locale
     debugPrint('Selected language: ${isEnglish ? 'EN' : 'JA'}');
   }
 

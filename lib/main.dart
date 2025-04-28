@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/l10n/app_localizations.dart';
 import 'package:wolverine/pages/account_page.dart';
 import 'package:wolverine/pages/details_page.dart';
 import 'package:wolverine/pages/home_page.dart';
@@ -58,12 +59,35 @@ final GoRouter _router = GoRouter(
   ],
 );
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  _MyAppState createState() => _MyAppState();
+
+  static _MyAppState of(BuildContext context) {
+    return context.findAncestorStateOfType<_MyAppState>()!;
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale _locale = const Locale('en');
+
+  void setLocale(Locale newLocale) {
+    setState(() {
+      _locale = newLocale;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(title: 'Wolverine', routerConfig: _router);
+    return MaterialApp.router(
+      title: 'Wolverine',
+      routerConfig: _router,
+      locale: _locale,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+    );
   }
 }
 
