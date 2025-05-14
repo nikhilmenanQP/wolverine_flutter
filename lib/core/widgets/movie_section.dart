@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/core/widgets/movie_list_section.dart';
 import 'package:wolverine/utils/responsive_sizes.dart';
-import 'package:wolverine/widgets/movie_list_section.dart';
 
 class MovieSection extends StatelessWidget {
   const MovieSection({

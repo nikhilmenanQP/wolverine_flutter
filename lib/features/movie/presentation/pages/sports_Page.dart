@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/core/widgets/footer_section.dart';
+import 'package:wolverine/core/widgets/home_carousel.dart';
+import 'package:wolverine/core/widgets/movie_section.dart';
 import 'package:wolverine/utils/responsive_sizes.dart';
-import 'package:wolverine/widgets/footer_section.dart';
-import 'package:wolverine/widgets/home_carousel.dart';
-import 'package:wolverine/widgets/movie_section.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class SportsPage extends StatelessWidget {
+  SportsPage({super.key});
 
   final List<String> _carouselImages = List.generate(
     10,
@@ -42,37 +42,36 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 MovieSection(
-                  containerHeight: [80, 140, 180],
-                  genre: 'Header 2',
-                  height: [70, 120, 150],
-                  movieList: _movieList,
                   sizingInformation: sizingInformation,
+                  movieList: _movieList,
+                  genre: 'Header 2',
+                  containerHeight: [80, 140, 180],
+                  height: [70, 120, 150],
                   width: [120, 200, 260],
                 ),
                 MovieSection(
-                  containerHeight: [110, 180, 200],
-                  genre: 'Header 3',
-                  height: [100, 160, 180],
-                  movieList: _movieList,
                   sizingInformation: sizingInformation,
-                  width: [100, 160, 180],
+                  movieList: _movieList,
+                  genre: 'Header 3',
+                  containerHeight: [80, 140, 180],
+                  height: [70, 120, 150],
+                  width: [120, 200, 260],
                 ),
                 MovieSection(
-                  containerHeight: [100, 160, 180],
+                  containerHeight: [80, 140, 180],
                   genre: 'Header 4',
                   height: [70, 120, 150],
                   movieList: _movieList,
-                  showTitle: true,
                   sizingInformation: sizingInformation,
                   width: [120, 200, 260],
                 ),
                 MovieSection(
-                  containerHeight: [160, 280, 320],
+                  containerHeight: [80, 140, 180],
                   genre: 'Header 5',
-                  height: [150, 260, 300],
+                  height: [70, 120, 150],
                   movieList: _movieList,
                   sizingInformation: sizingInformation,
-                  width: [92, 160, 180],
+                  width: [120, 200, 260],
                 ),
                 const SizedBox(height: 16),
                 if (sizingInformation.deviceScreenType ==

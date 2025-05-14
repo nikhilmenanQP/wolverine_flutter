@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wolverine/core/widgets/custom_search_bar.dart';
 import 'package:wolverine/l10n/app_localizations.dart';
 import 'package:wolverine/main.dart';
-import 'package:wolverine/widgets/custom_search_bar.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double scrollOffset;

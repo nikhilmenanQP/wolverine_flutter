@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:wolverine/core/widgets/movie_section.dart';
 import 'package:wolverine/l10n/app_localizations.dart';
 import 'package:wolverine/utils/responsive_sizes.dart';
-import 'package:wolverine/widgets/movie_section.dart';
 
 class DetailsPage extends StatelessWidget {
   DetailsPage({super.key, this.movieId});

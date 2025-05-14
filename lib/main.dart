@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wolverine/core/widgets/bottomNavBar_mobile.dart';
+import 'package:wolverine/core/widgets/custom_app_bar.dart';
+import 'package:wolverine/features/movie/presentation/pages/account_page.dart';
+import 'package:wolverine/features/movie/presentation/pages/details_page.dart';
+import 'package:wolverine/features/movie/presentation/pages/home_page.dart';
+import 'package:wolverine/features/movie/presentation/pages/movies_page.dart';
+import 'package:wolverine/features/movie/presentation/pages/signin_page.dart';
+import 'package:wolverine/features/movie/presentation/pages/sports_Page.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:wolverine/l10n/app_localizations.dart';
-import 'package:wolverine/pages/account_page.dart';
-import 'package:wolverine/pages/details_page.dart';
-import 'package:wolverine/pages/home_page.dart';
-import 'package:wolverine/pages/movies_page.dart';
-import 'package:wolverine/pages/signin_page.dart';
-import 'package:wolverine/pages/sports_Page.dart';
-import 'package:wolverine/widgets/bottomNavBar_mobile.dart';
-import 'package:wolverine/widgets/custom_app_bar.dart';
 
 void main() {
   runApp(const MyApp());
